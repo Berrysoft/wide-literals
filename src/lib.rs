@@ -7,7 +7,7 @@ use syn::{parse, LitStr};
 pub fn w(input: TokenStream) -> TokenStream {
     let string_literal: LitStr = match parse(input) {
         Ok(literal) => literal,
-        Err(_) => panic!("Something other than a string literal was provided.")
+        Err(_) => panic!("Something other than a string literal was provided."),
     };
     let string = string_literal.value();
     let mut output = String::from("&[");
@@ -21,7 +21,6 @@ pub fn w(input: TokenStream) -> TokenStream {
         }
         output.push(',');
     }
-    output.push_str("0x0][0] as &'static u16");
+    output.push_str("0x0]");
     output.parse().unwrap()
 }
-
